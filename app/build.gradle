@@ -18,8 +18,9 @@ android {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    implementation('ask.com.askutilitylibraryandroid:ask-utility-library:1.4')
+    compile 'com.android.support:appcompat-v7:27.1.1'
+    compile 'com.android.support:design:27.1.1'
+    compile 'ask.com.askutilitylibraryandroid:asklibrary:1.0.0'
     implementation 'com.github.PhilJay:MPAndroidChart:v3.0.3'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
     compile 'com.jakewharton:butterknife:8.8.1'

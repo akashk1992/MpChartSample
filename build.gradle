@@ -17,6 +17,12 @@ allprojects {
     repositories {
         jcenter()
         maven { url "https://jitpack.io" }
+        maven {
+            url 'https://raw.githubusercontent.com/blockchain/api-v1-client-java/mvn-repo'
+        }
+        flatDir {
+            dirs 'libs'
+        }
         google()
     }
 }

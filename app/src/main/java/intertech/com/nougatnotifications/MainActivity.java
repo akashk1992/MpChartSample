@@ -1,8 +1,8 @@
 package intertech.com.nougatnotifications;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -13,13 +13,12 @@ import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
-import com.google.gson.Gson;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import ask.com.askutilitylibraryandroid.AskUtility;
-import ask.com.askutilitylibraryandroid.NetworkUtils;
+import ask.com.asklibrary.AskUtility;
+import ask.com.asklibrary.NetworkUtils;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -36,20 +35,23 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main_main);
         ButterKnife.bind(this);
         utility = new AskUtility(this);
-        Button inlineButton = (Button) findViewById(R.id.inlineResponse);
         Button bundledButton = (Button) findViewById(R.id.bundled);
         bundledButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                NotificationUtil.bundledNotification();
+//                NotificationUtil.bundledNotification();
+                startActivity(new Intent(MainActivity.this, ChartActivity.class));
             }
         });
-        Gson gson = new Gson();
         Log.d("test", "onCreate: " + NetworkUtils.isNetworkAvailable(this));
-        setChartData();
+        try {
+            setChartData();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
-    private void setChartData() {
+    private void setChartData() throws Exception {
         List<PieEntry> entries = new ArrayList<>();
         entries.add(new PieEntry(18.5f, ""));
         PieDataSet set = new PieDataSet(entries, "Balance");
